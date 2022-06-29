@@ -1,5 +1,6 @@
 import 'package:cities/src/screens/city_view_detail.dart';
 import 'package:cities/src/screens/mock_data.dart';
+import 'package:cities/src/screens/models/cities_models.dart';
 import 'package:flutter/material.dart';
 
 class CityView extends StatelessWidget {
@@ -24,17 +25,23 @@ class CityView extends StatelessWidget {
             child: ListView.builder(
                 itemCount: mockData.length,
                 itemBuilder: (context, index) {
+                  List<CityModel> _city = mockData.map(
+                    (elemet) {
+                      return CityModel.fromMap(elemet);
+                    },
+                  ).toList();
+
                   return GestureDetector(
                     child: Container(
-                        margin: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(18),
                         height: 300,
+                        width: 150,
                         child: Stack(
                           children: [
                             Positioned.fill(
                               child: ClipRect(
                                 //borderRadius: BorderRadius.circular(20),
-                                child: Image.network(
-                                    mockData[index]["cityImage"].toString(),
+                                child: Image.network(_city[index].cityIamge,
                                     fit: BoxFit.cover),
                               ),
                             ),
@@ -59,7 +66,7 @@ class CityView extends StatelessWidget {
                                           Colors.transparent,
                                         ])),
                                 child: Text(
-                                  mockData[index]["cityName"].toString(),
+                                  _city[index].cityName,
                                   style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
@@ -72,10 +79,7 @@ class CityView extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: ((context) => CityViewDetail(
-                                cityImage:
-                                    mockData[index]["profileImage"].toString(),
-                                cityInfo: '',
-                                cityName: '',
+                                city: _city[index],
                               )),
                         ),
                       ),

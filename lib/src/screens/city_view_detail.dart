@@ -1,19 +1,19 @@
+import 'package:cities/src/screens/mock_data.dart';
+import 'package:cities/src/screens/models/cities_models.dart';
 import 'package:flutter/material.dart';
 
 class CityViewDetail extends StatelessWidget {
-  const CityViewDetail(
-      {Key? key,
-      required this.cityImage,
-      required this.cityInfo,
-      required this.cityName})
-      : super(key: key);
-  final String cityName;
-  final String cityImage;
-  final String cityInfo;
+  const CityViewDetail({
+    Key? key,
+    required this.city,
+  }) : super(key: key);
+  final CityModel city;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
+      // ama appbar nia balam bar sabt lasarawa boxoy drust akat
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,17 +22,24 @@ class CityViewDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image.network(cityImage),
+                borderRadius: BorderRadius.circular(6),
+                child: Image.network(city.cityIamge),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 5,
             height: 5,
           ),
           Row(
-            children: [Text(cityName)],
+            children: [
+              Container(
+                  alignment: Alignment.center,
+                  width: 100,
+                  height: 50,
+                  color: Colors.yellow,
+                  child: Text(city.cityName))
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +47,7 @@ class CityViewDetail extends StatelessWidget {
               Expanded(
                 child: Container(
                   alignment: Alignment.center,
-                  child: Text(cityInfo),
+                  child: Text(city.cityInfo!),
                 ),
               ),
             ],
