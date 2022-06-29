@@ -18,8 +18,8 @@ class CityView extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(
-            width: 12,
-            height: 12,
+            width: 10,
+            height: 10,
           ),
           Expanded(
             child: ListView.builder(
