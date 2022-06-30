@@ -25,9 +25,9 @@ class CityView extends StatelessWidget {
             child: ListView.builder(
                 itemCount: mockData.length,
                 itemBuilder: (context, index) {
-                  List<CityModel> _city = mockData.map(
-                    (elemet) {
-                      return CityModel.fromMap(elemet);
+                  List<CityModel> city = mockData.map(
+                    (element) {
+                      return CityModel.fromMap(element);
                     },
                   ).toList();
 
@@ -41,7 +41,7 @@ class CityView extends StatelessWidget {
                             Positioned.fill(
                               child: ClipRect(
                                 //borderRadius: BorderRadius.circular(20),
-                                child: Image.network(_city[index].cityIamge,
+                                child: Image.network(city[index].cityIamge,
                                     fit: BoxFit.cover),
                               ),
                             ),
@@ -66,7 +66,7 @@ class CityView extends StatelessWidget {
                                           Colors.transparent,
                                         ])),
                                 child: Text(
-                                  _city[index].cityName,
+                                  city[index].cityName,
                                   style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
@@ -79,7 +79,7 @@ class CityView extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: ((context) => CityViewDetail(
-                                city: _city[index],
+                                city: city[index],
                               )),
                         ),
                       ),
